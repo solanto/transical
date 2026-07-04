@@ -57,7 +57,7 @@ xdg-email --attach output.ics recipient@example.com
 
 transical supports adding event reminders, and it even has its own filtering language to let you granularly choose journeys based on time of day and day of week.
 
-transical has a non-iteractive, script mode, too; it won't output anything it doesn't need to when called with `--route` and `--termini` flags already provided to it.
+transical has a noninteractive, script mode, too; it won't output anything it doesn't need to when called with `--route` and `--termini` flags already provided to it.
 
 Read more about [using transical](docs/general.md) or [writing filter expressions](docs/filter-expressions.md). You can also find this documentation in transical's manpages, or see an overview with `transical --help`.
 
