@@ -1,0 +1,22 @@
+{
+    "files.readonlyInclude": {
+        "__pycache__/**": true,
+        ".venv/**": true
+    },
+    "black-formatter.importStrategy": "fromEnvironment",
+    "isort.importStrategy": "fromEnvironment",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "python.defaultInterpreterPath": "/home/andrew/Code/transical/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ]
+}
