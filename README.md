@@ -16,6 +16,8 @@ On pipx systems:
 pipx install transical
 ```
 
+Install [shell autocompletions](https://en.wikipedia.org/wiki/Command-line_completion) with `transical --autocomplete`.
+
 <details>
 <summary>do you <em>really</em> want to use pip?</summary>
 
