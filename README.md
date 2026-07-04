@@ -95,4 +95,4 @@ If you fork transical, be sure to change [`meta:ORG_DOMAIN`](meta.py#L18) to you
 
 ## license
 
-[GNU General Public License v3.0 or later](https://spdx.org/licenses/GPL-3.0-or-later.html). See license in [`LICENSE.md`](LICENSE.md).uv
+[GNU General Public License v3.0 or later](https://spdx.org/licenses/GPL-3.0-or-later.html). See license in [`LICENSE.md`](LICENSE.md).
