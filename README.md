@@ -82,7 +82,7 @@ uv run transical
 And build the package with `uv build`:
 
 ```bash
-uv run build
+uv build
 ```
 
 This not only packages the program itself, but also converts documentation in [`docs`](docs) to manpages—installable via pipx—by way of a custom Pandoc pipeline. You can check out this pipeline in [`tools`](tools).
