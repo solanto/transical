@@ -95,7 +95,7 @@ This not only packages the program itself, but also converts documentation in [`
 
 Feel free to ask questions or make suggestions here or at [person@dandelion.computer](mailto:person@dandelion.computer). I'll do my best to collaborate with those who'd like to!
 
-If you fork transical, be sure to change [`meta:ORG_DOMAIN`](meta.py#L18) to your own domain (which could even be something like `your-username.github.io`). transical uses this identifier to tell remote servers exactly whose code is requesting information.
+If you fork transical, be sure to change [`meta:ORG_DOMAIN`](meta.py#L18) to your own domain (which could even be something like `your-username.github.io`). transical uses this identifier to tell remote servers exactly whose code is requesting information, as well as to document exactly whose code made the events in produced iCalendar files.
 
 ## license
 
