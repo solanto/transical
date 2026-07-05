@@ -388,7 +388,7 @@ def cli(
         calendar_rows = feed.calendar.query("service_id == @trip.service_id")
         if calendar_rows.empty:
             continue
-        calendar_row = calendar_rows.iloc[0].astype(str)
+        calendar_row = calendar_rows.iloc[0]
 
         run_days = [day for day in GTFS_TO_ICAL_DAY.keys() if bool(calendar_row[day])]
         if not run_days:
@@ -401,8 +401,8 @@ def cli(
 
         event_signature = (
             str(trip.get("trip_short_name", trip["trip_headsign"])).title(),
-            trip["departure_time"],
-            trip["arrival_time"],
+            int(trip["departure_time"]),
+            int(trip["arrival_time"]),
             tuple(sorted(filtered_run_days)),
         )
 
