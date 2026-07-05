@@ -102,7 +102,7 @@ def e(expr: Expression) -> str:
 
     match expr:
         case ["NOT", list(a)]:
-            code = f"not ({e(a)})"
+            code = f"not {e(a)}"
         case [str(a), ["IS", "NOT"], str(b)]:
             code = field_condition(a, b, negate=True)
         case [str(a), "IS", str(b)]:
