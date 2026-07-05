@@ -128,7 +128,7 @@ def cli(
 
     if (not route or not termini) and not output:
         raise ValueError(
-            "An output must be specified in interactive mode, when route or temrini are not provided"
+            "An output must be specified in interactive mode, when route or termini are not provided"
         )
 
     filter_callback = cast(
