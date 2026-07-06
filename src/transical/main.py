@@ -350,7 +350,7 @@ def cli(
             "lon": origin_stop_info["stop_lon"],
             "include": "osm.railway.station,osm.railway.halt,osm.railway.subway_entrance,osm.railway.tram_stop,osm.amenity.bus_station,osm.highway.bus_stop,osm.amenity.ferry_terminal,osm.public_transport.platform",
         }
-        headers: dict[str, str] = {"User-Agent": f"transical {VERSION} ({APP_DOMAIN})"}
+        headers: dict[str, str] = {"User-Agent": f"{APP_NAME} {VERSION} ({APP_DOMAIN})"}
         response = requests_session.get(url, params=params, headers=headers)
         origin_osm_info: dict[str, Any] | None = (
             response.json()["features"][0] if response.status_code == 200 else None
@@ -380,7 +380,7 @@ def cli(
     cal = Calendar()
     cal.add(
         "prodid",
-        f"-//{ORG_DOMAIN}//transical//EN",
+        f"-//{ORG_DOMAIN}//{APP_NAME}//EN",
     )
     cal.add("version", VERSION)
 
