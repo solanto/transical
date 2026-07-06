@@ -1,6 +1,6 @@
 [project]
 name = "transical"
-version = "0.1.0"
+version = "0.2"
 description = "Turn GTFS schedules into calendar events"
 readme = "README.md"
 license = "GPL-3.0-or-later"
