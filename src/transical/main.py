@@ -109,7 +109,7 @@ class Command(ck.Command):
     "--keep-origin-location",
     "-o",
     is_flag=True,
-    help="don't attempt to canonicalize the origin stop's name and coordinates (default: canonicalize via OpenStreetMap)",
+    help="don't attempt to canonicalize the origin stop's name and coordinates (default: canonicalize via photon/OpenStreetMap)",
 )
 @enable_click_shell_completion_option(help="enable shell autocompletion and exit")
 def cli(
