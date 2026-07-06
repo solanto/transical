@@ -322,6 +322,9 @@ def cli(
             )
         )
 
+    if interactive:
+        ck.echo("🤖 Working…")
+
     candidate_services = {
         id
         for d, ids in ptg.read_service_ids_by_date(gtfs_path).items()
@@ -337,9 +340,6 @@ def cli(
 
     event_location = origin_stop_info["stop_name"]
     event_geo = (origin_stop_info["stop_lat"], origin_stop_info["stop_lon"])
-
-    if interactive:
-        ck.echo("🤖 Working…")
 
     if not keep_origin_location:
         url = "https://photon.komoot.io/api/"
