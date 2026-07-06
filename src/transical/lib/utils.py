@@ -64,12 +64,12 @@ class PrefixSet(Iterable[str]):
         matches = self._match(prefix)
         match len(matches):
             case 0:
-                raise ValueError(f"The key `{prefix}` is not in the set.")
+                raise ValueError(f"The key '{prefix}' is not in the set")
             case 1:
                 return matches[0]
             case _:
                 raise KeyError(
-                    f"The key `{prefix}` is ambiguous. Possible matches: {', '.join(matches)}."
+                    f"The key '{prefix}' is ambiguous. Possible matches: {', '.join(matches)}"
                 )
 
     def __contains__(self, prefix: str):

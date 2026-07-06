@@ -87,14 +87,14 @@ def time_condition(complement: str, negate: bool) -> str:
             raise ValueError(f"Invalid time complement '{complement}'")
 
 
-def field_condition(field: str, spec: str, negate: bool) -> str:
+def field_condition(field: str, complement: str, negate: bool = False) -> str:
     match field:
         case "day":
-            return day_condition(spec, negate)
+            return day_condition(complement, negate)
         case "time":
-            return time_condition(spec, negate)
+            return time_condition(complement, negate)
         case _:
-            raise ValueError(f"Unsupported field `{field}`")
+            raise ValueError(f"Unsupported field '{field}'")
 
 
 def e(expr: Expression) -> str:
@@ -106,7 +106,7 @@ def e(expr: Expression) -> str:
         case [str(a), ["IS", "NOT"], str(b)]:
             code = field_condition(a, b, negate=True)
         case [str(a), "IS", str(b)]:
-            code = field_condition(a, b, negate=False)
+            code = field_condition(a, b)
         case [list(a), "AND", *b]:
             code = f"{e(a)} and {e(b)}"
         case [list(a), "OR", *b]:
@@ -115,7 +115,7 @@ def e(expr: Expression) -> str:
             return e(a)
 
     if code is None:
-        raise ValueError(f"Invalid expression `{collapse(expr)}`")
+        raise ValueError(f"Invalid expression '{collapse(expr)}'")
 
     return "(" + code + ")"
 
@@ -128,6 +128,9 @@ _compile = compile
 def compile(expr_str: str) -> EventFilter:
     code = "lambda day, time: " + e(parser.parse_string(expr_str).as_list())
     return eval(_compile(code, "event_filter", "eval"))
+
+
+trivial_filter: EventFilter = lambda _, __: True
 
 
 def s(time_str: str):

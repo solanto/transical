@@ -2,7 +2,8 @@ import sys
 from datetime import UTC, date, datetime, time, timedelta
 from pathlib import Path
 from random import choice
-from tempfile import NamedTemporaryFile, _TemporaryFileWrapper
+from tempfile import NamedTemporaryFile
+from tempfile import _TemporaryFileWrapper as TemporaryFileWrapper
 from typing import Any, BinaryIO, Final, cast
 
 import click as ck
@@ -126,17 +127,18 @@ def cli(
     Read INPUT as path to a local GTFS archive or a URL to one online. Evaluate journeys between START_DATE and END_DATE (YYYY-MM-dd format). Write an iCalendar file to OUTPUT path.
     """
 
-    if (not route or not termini) and not output:
+    interactive = not route or not termini
+
+    if interactive and not output:
         raise ValueError(
             "An output must be specified in interactive mode, when route or termini are not provided"
         )
 
-    filter_callback = cast(
-        EventFilter,
-        filter_compiler.compile(filter) if filter else lambda _, __: True,
+    filter_callback = (
+        filter_compiler.compile(filter) if filter else filter_compiler.trivial_filter
     )
 
-    temp_file: _TemporaryFileWrapper | None = None
+    temp_file: TemporaryFileWrapper | None = None
 
     try:
         requests_session.get_adapter(input)
@@ -156,13 +158,11 @@ def cli(
 
     start_date, end_date = interval
     full_feed = ptg.load_feed(gtfs_path)
-    interactive = False
 
     def echo_selection_canceled():
         ck.echo("🚫 Selection was canceled.")
 
     if not route:
-        interactive = True
         ck.echo(
             f"No route was provided. Use arrow keys to select a {ck.style('route', bold=True)} from the menu below."
         )
@@ -186,7 +186,6 @@ def cli(
     if termini:
         origin_stop_id, destination_stop_id = termini
     else:
-        interactive = True
         no_termini_message = "No termini were provided."
         ck.echo(
             f"{no_termini_message} Use arrow keys to select an {ck.style('origin', bold=True)} from the menu below."
@@ -322,9 +321,9 @@ def cli(
     feed = ptg.load_feed(
         gtfs_path, {"trips.txt": {"route_id": route, "service_id": candidate_services}}
     )
-    origin_stop_info = (
-        feed.stops.query("stop_id == @origin_stop_id").iloc[0].astype(str)
-    )
+
+    stops = feed.stops.set_index("stop_id")
+    origin_stop_info = stops.loc[origin_stop_id]
 
     event_location = origin_stop_info["stop_name"]
     event_geo = (origin_stop_info["stop_lat"], origin_stop_info["stop_lon"])
@@ -377,18 +376,23 @@ def cli(
 
     seen_events = set()
 
-    route_row = feed.routes.query("route_id == @route").iloc[0]
+    routes = feed.routes.set_index("route_id")
+
+    route_row = routes.loc[route]
     route_name = f"{route_row.get('route_short_name', '')} {route_row.get('route_long_name', '')}".strip()
 
-    dest_stop_info = feed.stops.query("stop_id == @destination_stop_id").iloc[0]
+    dest_stop_info = stops.loc[destination_stop_id]
+
     origin_name = origin_stop_info["stop_name"]
     dest_name = dest_stop_info["stop_name"]
 
+    feed_calendar = feed.calendar.set_index("service_id")
+
     for _, trip in relevant_trips.iterrows():
-        calendar_rows = feed.calendar.query("service_id == @trip.service_id")
-        if calendar_rows.empty:
+        try:
+            calendar_row = feed_calendar.loc[trip.service_id]
+        except KeyError:
             continue
-        calendar_row = calendar_rows.iloc[0]
 
         run_days = [day for day in GTFS_TO_ICAL_DAY.keys() if bool(calendar_row[day])]
         if not run_days:
