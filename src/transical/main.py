@@ -380,7 +380,7 @@ def cli(
     cal = Calendar()
     cal.add(
         "prodid",
-        f"-//{ORG_DOMAIN}//{APP_NAME}//EN",
+        f"-//{ORG_DOMAIN}//{APP_NAME} {VERSION}//EN",
     )
     cal.add("version", VERSION)
 
