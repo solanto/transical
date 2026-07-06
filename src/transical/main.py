@@ -44,8 +44,16 @@ FILTER_FLAG = ("--filter", "-f")
 
 THIS_YEAR: Final = date.today().year
 
+match shutil.which(APP_NAME):
+    case str(path) if Path(path).resolve() == Path(sys.argv[0]).resolve():
+        _executable = APP_NAME
+    case _:
+        _executable = sys.argv[0]
+
+EXECUTABLE: Final = _executable
+
 EXAMPLES: Final = "\n\n.\n\n".join(
-    f"  {sys.argv[0]} {arguments}\n\n  ↳ {description}"
+    f"  {EXECUTABLE} {arguments}\n\n  ↳ {description}"
     for arguments, description in [
         (
             f"input.gtfs {THIS_YEAR}-07-01/{THIS_YEAR}-08-01 output.ics",
@@ -300,17 +308,9 @@ def cli(
         def tip_style(text: str, **kwargs):
             return ck.style(text, fg="yellow", **kwargs)
 
-        match shutil.which(APP_NAME):
-            case str(path) if (
-                Path(path).resolve() == Path(argv_without_tip_items[0]).resolve()
-            ):
-                executable = APP_NAME
-            case _:
-                executable = argv_without_tip_items[0]
-
         ck.echo(
             tip_style(f"\n✨ Next time, you can run:\n")
-            + tip_style(executable + " ")
+            + tip_style(EXECUTABLE + " ")
             + tip_style(" ".join(argv_without_tip_items[1:4]) + " ")
             + tip_style(f"-r {route} ", bold=route_flag_index is None)
             + tip_style(
