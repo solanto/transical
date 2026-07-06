@@ -34,7 +34,7 @@ pip install transical
 transical input.gtfs 2026-07-01/2026-08-01 output.ics
 ```
 
-That's it! transical interactively walks you through picking a route, origin stop, and destination stop, before producing an output file with all the transit journeys that fall between the specified dates (1 July and 1 August 2026, in this example).
+That's it! transical interactively walks you through picking a route, origin stop, and destination stop, before producing an output file with all the transit journeys that fall between the specified dates.
 
 ```console
 $ transical https://feeds.mta.maryland.gov/gtfs/marc 2026-07-01/2026-08-01 output.ics
