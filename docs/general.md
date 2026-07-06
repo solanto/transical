@@ -27,7 +27,7 @@ transical [OPTIONS] INPUT START_DATE/END_DATE [OUTPUT]
 
 `-h`, `--help`
 
-: display this help and exit
+: display help and exit
 
 `-v`, `--version`
 
