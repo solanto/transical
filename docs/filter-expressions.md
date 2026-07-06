@@ -26,7 +26,7 @@ date: July 2026
 
 A `--filter` expression allows users to isolate specific journeys by departure day-of-week and time-of-day when converting GTFS schedules to calendar events.
 
-transical reads `INPUT` as a path to a local GTFS archive or a URL to one online., evaluates journeys between `START_DATE` and `END_DATE` (`YYYY-MM-dd` format) matching the filter expression, and writes an iCalendar file to the `OUTPUT` path.
+transical reads `INPUT` as a path to a local GTFS archive or a URL to one online, evaluates journeys between `START_DATE` and `END_DATE` (`YYYY-MM-dd` format) matching the filter expression, and writes an iCalendar file to the `OUTPUT` path.
 
 All text in expressions is case-insensitive; `DAY IS WED`, `day IS wed`, and `day is wed` are equivalent.
 
