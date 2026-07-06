@@ -3,13 +3,13 @@ title: transical
 section: 7
 title_prefix: "Filter Expressions"
 header: "transical Manual"
-footer: "transical 0.1.0"
+footer: "transical 0.3"
 date: July 2026
 ---
 
 # name
 
-*transical* – manual page for transical 0.1.0 filtering expressions
+*transical* – manual page for transical 0.3 filtering expressions
 
 # synopsis
 
