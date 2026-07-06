@@ -1,3 +1,4 @@
+import shutil
 import sys
 from datetime import UTC, date, datetime, time, timedelta
 from pathlib import Path
@@ -299,9 +300,18 @@ def cli(
         def tip_style(text: str, **kwargs):
             return ck.style(text, fg="yellow", **kwargs)
 
+        match shutil.which(APP_NAME):
+            case str(path) if (
+                Path(path).resolve() == Path(argv_without_tip_items[0]).resolve()
+            ):
+                executable = APP_NAME
+            case _:
+                executable = argv_without_tip_items[0]
+
         ck.echo(
             tip_style(f"\n✨ Next time, you can run:\n")
-            + tip_style(" ".join(argv_without_tip_items[:4]) + " ")
+            + tip_style(executable + " ")
+            + tip_style(" ".join(argv_without_tip_items[1:4]) + " ")
             + tip_style(f"-r {route} ", bold=route_flag_index is None)
             + tip_style(
                 f"-t {origin_stop_id}/{destination_stop_id}",
