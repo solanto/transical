@@ -15,7 +15,7 @@ date: July 2026
 
 ```bnf
 <expression> ::= <field> is [ not ] <complement>
-                 [ and <expression> | or <expression> ]
+                 [ and <expression> ] [ or <expression> ]
 
 <field>      ::= day | time
 
@@ -66,7 +66,7 @@ All text in expressions is case-insensitive; `DAY IS WED`, `day IS wed`, and `da
 
 ## shorthand
 
-For `<field>`s, `<day_literal>`s, and `<day_group>`s: any unambiguous suffix is accepted. For example, `day` can be written `d`; `Wednesdays` must meanwhile be at least `wed` to disambiguate from `weekdays` and `weekends`.
+For `<field>`s, `<day_literal>`s, and `<day_group>`s: any unambiguous prefix is accepted. For example, `day` can be written `d`; `Wednesdays` must meanwhile be at least `wed` to disambiguate from `weekdays` and `weekends`.
 
 ## time formatting
 
