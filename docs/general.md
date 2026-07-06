@@ -21,7 +21,7 @@ transical [OPTIONS] INPUT START_DATE/END_DATE [OUTPUT]
 
 *transical* turns GTFS schedules into calendar events.
 
-*transical* reads `INPUT` as a path to a local GTFS archive or a URL to one online., evaluates journeys between `START_DATE` and `END_DATE` (`YYYY-MM-dd` format), and writes an iCalendar file to the `OUTPUT` path.
+*transical* reads `INPUT` as a path to a local GTFS archive or a URL to one online, evaluates journeys between `START_DATE` and `END_DATE` (`YYYY-MM-dd` format), and writes an iCalendar file to the `OUTPUT` path.
 
 # options
 
