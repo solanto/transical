@@ -382,7 +382,7 @@ def cli(
         "prodid",
         f"-//{ORG_DOMAIN}//{APP_NAME} {VERSION}//EN",
     )
-    cal.add("version", VERSION)
+    cal.add("version", "2.0")
 
     seen_events = set()
 
