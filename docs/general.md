@@ -116,7 +116,7 @@ transical input.gtfs 2026-07-01/2026-08-01 -r RED -t STN_B03/STN_A14
 
 # further processing
 
-Use a tool like [*sed*](https://www.gnu.org/software/sed/) to replace parts of events\' titles or descriptions, or [*mergecal*](https://mergecal.readthedocs.io/en/latest/) to turn multiple outputs into a single iCalendar file.
+Use a tool like [*sed*](https://www.gnu.org/software/sed/) to replace parts of events\' titles or descriptions, or [*MergeCal*](https://mergecal.readthedocs.io/en/latest/) to turn multiple outputs into a single iCalendar file.
 
 Email an output to yourself for easy import on another device, with a tool like [*xdg-email*](https://portland.freedesktop.org/doc/xdg-email.html):
 

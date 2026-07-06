@@ -67,7 +67,7 @@ class Command(ck.Command):
 
 @ck.command(
     cls=Command,
-    epilog="Use a tool like sed (https://www.gnu.org/software/sed/) to replace parts of events' titles or descriptions, or mergecal (https://mergecal.readthedocs.io/en/latest/) to turn multiple outputs into a single iCalendar file.",
+    epilog="Use a tool like sed (https://www.gnu.org/software/sed/) to replace parts of events' titles or descriptions, or MergeCal (https://mergecal.readthedocs.io/en/latest/) to turn multiple outputs into a single iCalendar file.",
 )
 @ck.pass_context
 @ck.help_option("--help", "-h", help="display this help and exit")
