@@ -1,4 +1,4 @@
-# transical
+# ![transical](misc/wordmark.svg)
 
 [![PyPI](https://img.shields.io/pypi/v/transical)](https://pypi.org/project/transical/)
 
