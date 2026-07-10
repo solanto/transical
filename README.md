@@ -2,6 +2,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/transical)](https://pypi.org/project/transical/)
 
+[/ˈtɹænzɪ.kæl/](https://ipa-reader.com/?text=ˈt%C9%B9ænz%C9%AA.kæl&voice=Matthew)
+
 transical converts publically-available [GTFS](https://gtfs.org/) transit schedules into calendar events, bundled into [iCalendar](https://en.wikipedia.org/wiki/ICalendar) (`.ics`) files.
 
 It’s designed to automate putting public transit schedules in your calendar. iCalendar files can be imported into Google Calendar, Apple Calendar, Evolution, Thunderbird, or just about any other calendar application.
